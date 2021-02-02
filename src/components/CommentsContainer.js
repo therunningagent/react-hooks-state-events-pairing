@@ -10,11 +10,30 @@ function CommentsContainer({comments}){
             />
     })
 
+    const [hide, setHide] = useState(false)
+
+    function hideComment(e){
+        if (!hide) {
+            e.target.textContent = "Show Comments"
+        }else{
+            e.target.textContent = "Hide Comments"
+        }
+        setHide(hide => !hide)
+        
+    }
+
+
     return (
-        <div><h4>{comments.length} Comments</h4>
-            <ul>
-                <li>{CommentComp}</li>
-            </ul>    
+        <div>
+            <br/>
+            <button onClick={hideComment}>Hide Comments</button>
+                {hide ? null : {CommentComp}}
+            <br/>
+            <hr></hr>
+            <h4>{comments.length} Comments</h4>
+                <ul>
+                    <li>{CommentComp}</li>
+                </ul>
         </div>
     )
 };
